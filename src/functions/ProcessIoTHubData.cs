@@ -24,6 +24,10 @@ namespace Functions
             var deviceMessage = JsonConvert.DeserializeObject<DeviceMessage>(msg);
 
             table.Add(new Message(deviceMessage));
+
+            if(deviceMessage.CapacityAlert) {
+                log.LogInformation($"Alerta de Passageiros. Verificar trens disponíveis");
+            }
             log.LogInformation($"C# IoT Hub trigger function processed a message: {Encoding.UTF8.GetString(message.Body.Array)}");
         }
     }
